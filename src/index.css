@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --color-rich-black: #050505;
+  --color-secondary-black: #0D0D0D;
+  --color-neon-red: #FF073A;
+  --color-hover-red: #FF2D55;
+  --color-white-text: #F5F5F5;
+  --color-gray-text: #A1A1AA;
+
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-rich-black text-white-text font-body;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+}
+
+@layer utilities {
+  .neon-glow {
+    box-shadow: 0 0 10px rgba(255, 7, 58, 0.5), 0 0 20px rgba(255, 7, 58, 0.3);
+  }
+  .neon-glow-hover:hover {
+    box-shadow: 0 0 15px rgba(255, 45, 85, 0.7), 0 0 30px rgba(255, 45, 85, 0.4);
+  }
+}
+
+@utility text-gradient {
+    background: linear-gradient(to bottom, #ffffff, #1a0505);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
