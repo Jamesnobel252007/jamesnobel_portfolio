@@ -61,26 +61,29 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+     {/* Mobile Drawer Overlay Context */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-secondary-black border-b border-gray-text/20 overflow-hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="absolute top-full left-0 w-full md:hidden bg-[#0A0A0A]/95 backdrop-blur-lg border-b border-red-950/60 overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.9)]"
           >
-            <div className="px-4 pt-2 pb-6 space-y-1">
+            <div className="px-5 pt-3 pb-8 space-y-2">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block px-3 py-3 text-base font-medium text-gray-text hover:text-neon-red hover:bg-rich-black rounded-md"
+                  className="flex items-center gap-3 px-3 py-3 text-xs tracking-widest text-neutral-400 hover:text-white hover:bg-red-950/20 border border-transparent hover:border-red-950/40 rounded transition-all duration-300"
                 >
-                  {link.name}
+                  <span className="text-red-600 text-[9px] font-sans">{link.index}</span>
+                  <span>{link.name}</span>
                 </a>
               ))}
+             
             </div>
           </motion.div>
         )}
