@@ -62,7 +62,7 @@ const Skills = () => {
     // Run initial configuration layout
     layoutCards();
 
-    // GSAP Scroll Animation Ring
+    // GSAP Scroll Animation Ring with smoother tracking geometry
     const spinTimeline = gsap.to(ringRef.current, {
       rotationY: 360,
       ease: "none",
@@ -70,9 +70,10 @@ const Skills = () => {
         trigger: triggerRef.current,
         start: "top top",
         end: `+=${totalSkills * 90}%`,
-        scrub: 1,
+        scrub: 1.5, // Shifted from 1 to 1.5 to activate weighted inertia mechanics
         pin: true,
-        anticipatePin: 1
+        anticipatePin: 1,
+        invalidateOnRefresh: true
       }
     });
 
@@ -90,6 +91,7 @@ const Skills = () => {
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      spinTimeline.kill();
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, []);
