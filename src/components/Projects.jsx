@@ -1,46 +1,47 @@
-import React from 'react';
+
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from 'framer-motion';
-import { ExternalLink, Code } from 'lucide-react';
 
 const projectsList = [
   {
     id: 1,
-    title: "NOVEL_LAUNCH_PAD",
-    subtitle: "Immersive literary landing deployment architecture. Utilizes performance-optimized GSAP kinetic scroll pipelines. Features reactive typography and custom motion viewports. Engineered for high-conversion visual storytelling.",
-    tags: ["React", "Tailwind CSS", "GSAP Engine", "UI/UX"],
+    title: "DRAGEN_AI_DOCUMENT_PLATFORM",
+    subtitle: "AI-powered document intelligence and collaboration platform. Combines document management with Retrieval-Augmented Generation (RAG) to enable context-aware document question answering. Built with a React frontend and Python-based backend services, with a focus on seamless document interaction and intelligent information retrieval.",
+    tags: ["React", "Django", "Python", "PostgreSQL", "REST APIs", "RAG", "AI"],
+    link: "https://dragen-wheat.vercel.app",
     glow: "shadow-[0_0_40px_rgba(239,68,68,0.25)]"
   },
   {
     id: 2,
+    title: "NOVEL_LAUNCH_PAD",
+    subtitle: "Personal author portfolio and literary showcase. Features an immersive reading-focused interface designed to present published creative work through responsive layouts, visual storytelling, and carefully crafted user experiences. Deployed as a live web application.",
+    tags: ["React", "Tailwind CSS", "GSAP", "UI/UX"],
+    link: "https://authorjamesnobel.vercel.app",
+    glow: "shadow-[0_0_40px_rgba(239,68,68,0.25)]"
+  },
+  {
+    id: 3,
+    title: "BASKMART_ECOMMERCE",
+    subtitle: "E-commerce web application focused on product discovery and shopping workflows. Designed to provide an intuitive browsing experience through reusable interface components, organized product presentation, and responsive frontend architecture.",
+    tags: ["React", "Node.js", "Express.js", "MongoDB", "MERN Stack"],
+    glow: "shadow-[0_0_40px_rgba(220,38,38,0.25)]"
+  },
+  {
+    id: 4,
     title: "SAEC_AI_CONSULTANT",
     subtitle: "Predictive campus intelligence terminal and assistant network. Powered by LLM orchestration via the Gemini intelligence core. Integrated asynchronous communication over a Flask REST API gateway. Delivers rapid institutional diagnostics and data routing.",
     tags: ["Python", "Flask", "Gemini API", "React", "Tailwind CSS"],
     glow: "shadow-[0_0_40px_rgba(220,38,38,0.25)]"
   },
   {
-    id: 3,
+    id: 5,
     title: "INSTAMETRIC_DASHBOARD",
-    subtitle: "Real-time social telemetry data ingestion module. Directly interfaces with structural Instagram Graph endpoints. Aggregates deep engagement vectors into intuitive UI layers. Designed for responsive analytics rendering and monitoring.",
-    tags: ["React", "Instagram API", "Tailwind CSS", "Data Analytics"],
+    subtitle: "Social media analytics dashboard concept focused on presenting Instagram creator performance and engagement metrics. Designed around clear data visualization, intuitive UI layers, and responsive analytics rendering.",
+    tags: ["React", "JavaScript", "Tailwind CSS", "Data Analytics"],
     glow: "shadow-[0_0_40px_rgba(185,28,28,0.25)]"
   },
-  {
-    id: 4,
-    title: "RES_Q_MOBILE_CORE",
-    subtitle: "Cross-platform emergency rider tracking mobile app node. Compiled natively via Expo Go ecosystem for rapid field execution. Maps live telematics telemetry streaming from localized IoT nodes. Features low-latency crash detection and alerting triggers.",
-    tags: ["React Native", "Expo Go", "Tailwind CSS", "IoT Gateway"],
-    glow: "shadow-[0_0_40px_rgba(153,27,27,0.25)]"
-  },
-  {
-    id: 5,
-    title: "WONDER_SPA_PORTAL",
-    subtitle: "Full-stack client onboarding and appointment scheduling node. Features transaction integrity via robust MongoDB cluster schemas. Backed by an atomic Express routing backend layer. Provides an elegant interface for complete service lifecycle tracking.",
-    tags: ["MongoDB", "Express.js", "React", "Node.js"],
-    glow: "shadow-[0_0_40px_rgba(239,68,68,0.25)]"
-  }
+  
 ];
 
 export default function Projects() {
@@ -117,14 +118,14 @@ export default function Projects() {
           opacity: 0,
           ease: "power1.inOut"
         }, index)
-        .to(nextCard, {
-          z: 0,
-          x: nextDirection * config.nextCardXMultiplier,
-          rotationY: nextDirection * -15,
-          scale: 1,
-          opacity: 1,
-          ease: "power1.inOut"
-        }, index);
+          .to(nextCard, {
+            z: 0,
+            x: nextDirection * config.nextCardXMultiplier,
+            rotationY: nextDirection * -15,
+            scale: 1,
+            opacity: 1,
+            ease: "power1.inOut"
+          }, index);
       }
     });
 
@@ -145,7 +146,7 @@ export default function Projects() {
   return (
     <section id="projects" ref={triggerRef} className="relative w-full h-screen bg-[#050505] overflow-hidden select-none">
       <div className='relative w-full h-screen'>
-        
+
         {/* Title Section Header */}
         <div className="w-full relative z-30">
           <h2 className='absolute top-10 sm:top-14 left-1/2 -translate-x-1/2 text-center text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-white whitespace-nowrap'>
@@ -170,6 +171,15 @@ export default function Projects() {
                 <h3 className='text-xl sm:text-2xl md:text-3xl font-black tracking-wide font-sans text-white uppercase'>
                   {project.title}
                 </h3>
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit Live Project ↗
+                  </a>
+                )}
                 <p className='text-[11px] sm:text-xs font-mono text-neutral-400 mt-3 sm:mt-4 tracking-normal sm:tracking-wide leading-relaxed overflow-y-auto max-h-[160px] sm:max-h-none pr-1'>
                   {project.subtitle}
                 </p>
